@@ -13,11 +13,13 @@ if (!window.jdScannerInitialized) {
   function highlightQuotes(quotes) {
     if (!quotes) return;
 
-    // Define colors for highlighting using the primary/secondary palette + an accent
+    // Define colors for highlighting using the primary/secondary palette + accents
     const colors = {
       salary: "#00B188", // Green
       experience: "#003366", // Blue
-      clearance: "#FF9800" // Orange for clearance to stand out
+      clearance: "#FF9800", // Orange
+      sponsorship: "#9C27B0", // Purple
+      workingModel: "#03A9F4" // Light Blue
     };
 
     Object.keys(quotes).forEach(key => {

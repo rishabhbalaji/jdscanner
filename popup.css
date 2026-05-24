@@ -79,6 +79,17 @@ button:disabled {
   cursor: not-allowed;
 }
 
+.secondary-btn {
+  background-color: #F5F7FA;
+  color: #003366;
+  border: 1px solid #003366;
+  margin-top: 12px;
+}
+
+.secondary-btn:hover {
+  background-color: #E2E8F0;
+}
+
 .hidden {
   display: none !important;
 }
