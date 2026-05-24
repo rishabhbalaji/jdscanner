@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "JD Scanner",
+  "version": "1.0",
+  "description": "Scans job descriptions for Cyber Security roles in the UK.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://generativelanguage.googleapis.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "JD Scanner"
+  }
+}

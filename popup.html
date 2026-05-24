@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="popup.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="header">
+    <h1>JD Scanner</h1>
+    <p>Cyber Security UK</p>
+  </div>
+  
+  <div id="settingsContent" class="content hidden">
+    <p class="settings-desc">Please enter your Gemini API Key.</p>
+    <input type="password" id="apiKeyInput" placeholder="API Key" />
+    <button id="saveKeyBtn">Save Key</button>
+  </div>
+
+  <div id="mainContent" class="content hidden">
+    <button id="scanBtn">Scan Job Description</button>
+    <div id="loader" class="hidden">Scanning with Gemini...</div>
+    <div id="results" class="hidden">
+      <div class="card">
+        <div class="label">Expected Salary</div>
+        <div class="value" id="salaryVal">-</div>
+      </div>
+      <div class="card">
+        <div class="label">Years of Experience</div>
+        <div class="value" id="expVal">-</div>
+      </div>
+      <div class="card">
+        <div class="label">Security Clearance</div>
+        <div class="value" id="clearanceVal">-</div>
+      </div>
+    </div>
+    <div id="error" class="hidden error-msg"></div>
+    <div class="settings-link"><a href="#" id="changeKeyLink">Change API Key</a></div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+body {
+  font-family: 'Inter', sans-serif;
+  width: 320px;
+  margin: 0;
+  padding: 0;
+  background-color: #F5F7FA;
+  color: #333;
+}
+
+.header {
+  background-color: #003366;
+  color: white;
+  padding: 16px;
+  text-align: center;
+  border-bottom: 4px solid #00B188;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.header p {
+  margin: 4px 0 0;
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.content {
+  padding: 20px;
+}
+
+.settings-desc {
+  font-size: 14px;
+  margin-bottom: 12px;
+  color: #666;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+input:focus {
+  outline: none;
+  border-color: #00B188;
+}
+
+button {
+  width: 100%;
+  background-color: #00B188;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+button:hover {
+  background-color: #009673;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+button:disabled {
+  background-color: #A0CFC3;
+  cursor: not-allowed;
+}
+
+.hidden {
+  display: none !important;
+}
+
+#loader {
+  text-align: center;
+  margin-top: 16px;
+  font-weight: 600;
+  color: #003366;
+}
+
+#results {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card {
+  background: white;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  border-left: 4px solid #00B188;
+}
+
+.card .label {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #666;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.card .value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #003366;
+  line-height: 1.4;
+}
+
+.error-msg {
+  color: #D32F2F;
+  margin-top: 16px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.settings-link {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 12px;
+}
+
+.settings-link a {
+  color: #003366;
+  text-decoration: underline;
+  cursor: pointer;
+}
