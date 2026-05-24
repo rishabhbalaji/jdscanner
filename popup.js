@@ -1,4 +1,4 @@
-const GEMINI_MODEL = "gemini-1.5-flash";
+const GEMINI_MODEL = "gemini-2.5-flash";
 
 document.addEventListener('DOMContentLoaded', () => {
   chrome.storage.local.get(['geminiApiKey'], (result) => {
@@ -28,6 +28,7 @@ document.getElementById('changeKeyLink').addEventListener('click', (e) => {
 
 // Copy Button Logic
 document.getElementById('copyBtn').addEventListener('click', () => {
+  const location = document.getElementById('locationVal').innerText;
   const salary = document.getElementById('salaryVal').innerText;
   const exp = document.getElementById('expVal').innerText;
   const clearance = document.getElementById('clearanceVal').innerText;
@@ -35,7 +36,7 @@ document.getElementById('copyBtn').addEventListener('click', () => {
   const workingModel = document.getElementById('workingModelVal').innerText;
   const techStack = document.getElementById('techStackVal').innerText;
 
-  const summaryText = `JD Scanner Summary:\n- Salary: ${salary}\n- Experience: ${exp}\n- Clearance: ${clearance}\n- Sponsorship: ${sponsorship}\n- Model: ${workingModel}\n- Tech Stack: ${techStack}`;
+  const summaryText = `JD Scanner Summary:\n- Location: ${location}\n- Salary: ${salary}\n- Experience: ${exp}\n- Clearance: ${clearance}\n- Sponsorship: ${sponsorship}\n- Model: ${workingModel}\n- Tech Stack: ${techStack}`;
 
   navigator.clipboard.writeText(summaryText).then(() => {
     const btn = document.getElementById('copyBtn');
@@ -65,12 +66,12 @@ document.getElementById('scanBtn').addEventListener('click', async () => {
     }
 
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-    
+
     const extractTextResult = await chrome.scripting.executeScript({
       target: { tabId: tab.id },
       func: () => document.body.innerText
     });
-    
+
     const pageText = extractTextResult[0].result;
 
     if (!pageText) {
@@ -82,6 +83,7 @@ document.getElementById('scanBtn').addEventListener('click', async () => {
     Extract the following information and return ONLY a valid JSON object. Do NOT include markdown formatting like \`\`\`json.
     Required JSON structure:
     {
+      "location": "String (City, Country, or specific location)",
       "salary": "String (Expected salary or 'Not mentioned')",
       "experience": "String (Years of experience required, total and specific tools/fields)",
       "clearance": "String (Explicitly state if UK Security Clearance (SC/DV) or 5-year UK residency is required. Be definitive.)",
@@ -89,6 +91,7 @@ document.getElementById('scanBtn').addEventListener('click', async () => {
       "workingModel": "String (Remote, Hybrid, On-site, or Not mentioned)",
       "techStack": "String (Comma-separated list of core technologies, tools, or certifications required)",
       "evidenceQuotes": {
+        "location": "String (Exact sentence mentioning location, or null)",
         "salary": "String (Exact sentence mentioning salary, or null)",
         "experience": "String (Exact sentence mentioning experience, or null)",
         "clearance": "String (Exact sentence mentioning clearance, or null)",
@@ -124,13 +127,14 @@ document.getElementById('scanBtn').addEventListener('click', async () => {
     const jsonText = data.candidates[0].content.parts[0].text;
     const resultJson = JSON.parse(jsonText);
 
+    document.getElementById('locationVal').innerText = resultJson.location || 'N/A';
     document.getElementById('salaryVal').innerText = resultJson.salary || 'N/A';
     document.getElementById('expVal').innerText = resultJson.experience || 'N/A';
     document.getElementById('clearanceVal').innerText = resultJson.clearance || 'N/A';
     document.getElementById('sponsorshipVal').innerText = resultJson.sponsorship || 'N/A';
     document.getElementById('workingModelVal').innerText = resultJson.workingModel || 'N/A';
     document.getElementById('techStackVal').innerText = resultJson.techStack || 'N/A';
-    
+
     resultsDiv.classList.remove('hidden');
 
     await chrome.scripting.executeScript({

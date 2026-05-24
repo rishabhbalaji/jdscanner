@@ -15,6 +15,7 @@ if (!window.jdScannerInitialized) {
 
     // Define colors for highlighting using the primary/secondary palette + accents
     const colors = {
+      location: "#E91E63", // Pink
       salary: "#00B188", // Green
       experience: "#003366", // Blue
       clearance: "#FF9800", // Orange
@@ -23,9 +24,11 @@ if (!window.jdScannerInitialized) {
     };
 
     Object.keys(quotes).forEach(key => {
-      const quote = quotes[key];
-      if (quote && quote.trim().length > 5) {
-        highlightText(document.body, quote.trim(), colors[key]);
+      if (Object.prototype.hasOwnProperty.call(colors, key)) {
+        const quote = quotes[key];
+        if (quote && typeof quote === 'string' && quote.trim().length > 5) {
+          highlightText(document.body, quote.trim(), colors[key]);
+        }
       }
     });
   }
